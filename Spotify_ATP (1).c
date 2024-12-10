@@ -9,15 +9,8 @@ struct song{
     struct song* next;
 };
 
-struct song_playlist{
-    char title[100];
-    char singer[100];
-    struct song_playlist* next;
-};
-
 struct playlist {
     char name[100];
-    struct song_playlist* head;
     struct playlist* next;
 };
 
@@ -72,15 +65,23 @@ struct playlist* insertPlaylistFromUser(struct playlist* head, char title[]) {
 }
 
 // insert Song to Playlist
-struct song* addSong(struct song* head, char title[], char singer[]) {
+struct playlist* addSongtoPlaylist(struct playlist* head, char title[], char singer[]) {
     struct song* newSong = createSong(title, singer); 
-    if (head == NULL) return newSong; 
+    if (head == NULL) printf("Sorry, playlist not found"); 
 
-    struct song* temp = head; 
-    while (temp->next != NULL) { 
-        temp = temp->next; 
+    for (int i = 0; i < 100; i++)
+    {
+        if (title[i] == '\0')
+        {
+            title[i], title;
+            singer[i], singer;
+        }
+        else if (title[i+1] == '\0')
+        {
+            title[i+1], title;
+            singer[i+1], singer;
+        }
     }
-    temp->next = newSong;
     return head;
 }
 
